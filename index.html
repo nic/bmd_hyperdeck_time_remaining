@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hyperdeck Time Remaining</title>
+    <style>
+        body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        #messages {height: 100vh; width: 100vw; font-size: 72px;display: flex; justify-content: center; align-items: center;}
+        .yalert { background-color: yellow}
+        .ralert { background-color: red; color: white}
+        .balert { background-color: red; color: white; animation: blink 1s 1s infinite;}
+        .ok {background-color: white; color: black}
+        @keyframes blink {
+            from {background-color: red; color: white;}
+            50% {background-color: yellow; color: black;}
+            to {background-color: red;color: white;}
+        }
+    </style>
+</head>
+<body>
+<div id="messages" class="ok"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  socket.on('time', function(msg) {
+    var item = document.getElementById('messages');
+
+    item.innerText = msg
+    const a = msg.split(':');
+    const seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+
+    if(seconds<5) {
+      item.setAttribute('class', 'balert');
+    } else if(seconds<10) {
+      item.setAttribute('class', 'ralert');
+    } else if(seconds<30) {
+      item.setAttribute('class', 'yalert');
+    } else {
+      item.setAttribute('class', 'ok');
+    }
+  });
+</script>
+</body>
+</html>
