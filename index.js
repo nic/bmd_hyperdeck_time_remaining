@@ -5,12 +5,12 @@ import {Server} from 'socket.io';
 import http from 'http';
 import {exec} from 'child_process';
 import open from 'open';
-import path from 'path';
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-const __dirname = path.resolve(path.dirname(''));
+const __dirname = process.execPath;
+console.log(`Current dir: ${__dirname}`);
 
 const hyperdeck_ip = process.argv[2];
 const port = process.argv[3] || 9088
