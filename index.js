@@ -7,7 +7,7 @@ const io = new Server(server);
 const {exec} = require("child_process");
 
 //Change to your Hyperdeck IP address
-const hyperdeck_ip = "192.168.1.211";
+const hyperdeck_ip = "192.168.1.42";
 
 setInterval(function () {
 	exec(`./bmdhd.sh ${hyperdeck_ip}`, (error, stdout, stderr) => {
@@ -22,7 +22,7 @@ setInterval(function () {
     		console.error('['+date.toLocaleTimeString("en-GB")+'] stderror: ' + stderr);
     		return;
   		} 
-        // If no error, send the data
+                // If no error, send the data
   		io.emit('time', stdout.replace(/\n/gm, ""))
 		});
 	}, 1000);
