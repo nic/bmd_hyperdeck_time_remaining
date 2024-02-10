@@ -1,16 +1,31 @@
 #!/usr/bin/env node
 
-const express = require('express');
+import express from 'express';
+import {Server} from 'socket.io';
+import http from 'http';
+import {exec} from 'child_process';
+import open from 'open';
+import path from 'path';
+
 const app = express();
-const http = require('http');
 const server = http.createServer(app);
-const { Server } = require("socket.io");
 const io = new Server(server);
-const {exec} = require("child_process");
+const __dirname = path.resolve(path.dirname(''));
 
 //Change to your Hyperdeck IP address
-const hyperdeck_ip = "192.168.1.42";
+const hyperdeck_ip = process.argv[2];
 
+// Check and warn if IP is not provided
+if (!process.argv[2]) {
+	console.warn(`Missing hyperdeck IP. Please provide the IP address of the Hyperdeck as an argument.\nExample: \n $ npx github:nic/bmd_hyperdeck_time_remaining 192.168.1.42`);
+	process.exit(1);
+}
+
+console.info(`Connecting into Hyperdeck at: ${hyperdeck_ip}`);
+io.sockets.on('connection', function(socket)	{
+	console.log('A new user has connected');
+	io.emit('ip', hyperdeck_ip);
+});
 setInterval(function () {
 	exec(`./bmdhd.sh ${hyperdeck_ip}`, (error, stdout, stderr) => {
 		// Logging of errors
@@ -25,7 +40,7 @@ setInterval(function () {
     			console.error('['+date.toLocaleTimeString("en-GB")+'] stderror: ' + stderr);
   			io.emit('erro', stderr.replace(/\n/gm, ""))
     			return;
-  		} 
+  		}
                 // If no error, send the data
   		io.emit('time', stdout.replace(/\n/gm, ""))
 		});
@@ -36,6 +51,7 @@ app.get('/', (req, res) => {
 });
 
 server.listen(9088, () => {
-  	console.log('Ready: http://localhost:9088');
+  	console.log('Browser page ready: http://localhost:9088');
+	open('http://localhost:9088');
 });
 

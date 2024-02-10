@@ -9,15 +9,32 @@
         .ralert { background-color: red; color: white}
         .balert { background-color: red; color: white; animation: blink 1s 1s infinite;}
         .ok {background-color: black; color: white}
+        .connecting { font-size: 10vh !important; background-color: black; color: white}
+        @keyframes pulse {
+            from {opacity: 0.5;}
+            50% {opacity: 1;}
+            to {opacity: 0.5;}
+        }
+        .connecting::after {
+            content: "Connecting...";
+            animation-name: pulse;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        .error {background-color: red; color: white; font-size: 10vh !important; animation: blink 1s 1s infinite;}
         @keyframes blink {
             from {background-color: red; color: white;}
             50% {background-color: yellow; color: black;}
             to {background-color: red;color: white;}
         }
+        #ip {position: absolute; bottom: 0; right: 0; padding: 10px; color: white; font-size: 1vh; opacity: 40%}
+        #ip:hover {font-size: 5vh; background-color: black; opacity: 100%; cursor: help;}
+        #ip:hover::before {content: "HyperDeck: ";}
     </style>
 </head>
 <body>
-<div id="messages" class="ok"></div>
+<div id="messages" class="connecting"></div>
+<div id="ip">Waiting IP..</div>
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
@@ -36,10 +53,14 @@
       item.setAttribute('class', 'ok');
     }
   });
-    
+
   socket.on('erro', function(msg) {
     item.innerText = msg
-    item.setAttribute('class', 'ralert');
+    item.setAttribute('class', 'error');
+  });
+
+  socket.on('ip', function(ip) {
+      document.getElementById('ip').innerText = ip;
   });
 </script>
 </body>
