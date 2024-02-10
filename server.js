@@ -9,7 +9,8 @@ import open from 'open';
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-const __dirname = process.execPath;
+
+const __dirname = require.resolve('bmd-hyperdeck-web-time-remaining')
 console.log(`Current dir: ${__dirname}`);
 
 const hyperdeck_ip = process.argv[2];
