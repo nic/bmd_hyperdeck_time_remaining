@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const __dirname = packageDirectorySync();
+const __dirname = packageDirectorySync(process.cwd());
 console.log(`Current dir: ${__dirname}`);
 
 const hyperdeck_ip = process.argv[2];
