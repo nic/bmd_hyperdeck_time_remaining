@@ -11,9 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-console.log(`import.meta.url: ${import.meta.url}`);
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
-console.log(`__dirname: ${__dirname}`);
 
 const hyperdeck_ip = process.argv[2];
 const port = process.argv[3] || 9088
