@@ -12,11 +12,9 @@ const server = http.createServer(app);
 const io = new Server(server);
 const __dirname = path.resolve(path.dirname(''));
 
-//Change to your Hyperdeck IP address
 const hyperdeck_ip = process.argv[2];
 const port = process.argv[3] || 9088
 
-// Check and warn if IP is not provided
 if (!process.argv[2]) {
 	console.warn(`Missing hyperdeck IP. Please provide the IP address of the Hyperdeck as an argument.\nExample: \n $ npx github:nic/bmd_hyperdeck_time_remaining 10.0.0.42`);
 	process.exit(1);
