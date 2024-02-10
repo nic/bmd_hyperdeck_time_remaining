@@ -2,11 +2,16 @@
   "name": "bmd-hyperdeck-web-time-remaining",
   "version": "1.0.0",
   "description": "Blackmagic Design Hyperdeck Time Remaining Web",
-  "main": "server.js",
   "type": "module",
-  "directories": {
-    "bin": "./"
+  "engines": {
+    "node": ">=14.0.0"
   },
+  "bin":  "./server.js",
+  "files": [
+    "server.js",
+    "index.html",
+    "bmdhd.sh"
+  ],
   "author": "Nic",
   "license": "MIT",
   "dependencies": {
