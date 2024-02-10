@@ -10,16 +10,28 @@ const {exec} = require("child_process");
 const hyperdeck_ip = "192.168.1.42";
 
 setInterval(function () {
-  exec(`./bmdhd.sh ${hyperdeck_ip}`, (error, stdout, stderr) => {
-    io.emit('time', stdout.replace(/\n/gm, ""))
-  });
-}, 1000);
+	exec(`./bmdhd.sh ${hyperdeck_ip}`, (error, stdout, stderr) => {
+		// Logging of errors
+		const date = new Date();
+ 		if (error) {
+	 		console.error(`${new Date().toString()} error: ${error.message}`);
+    		return;
+  		}
+
+  		if (stderr) {
+    		console.error('['+date.toLocaleTimeString("en-GB")+'] stderror: ' + stderr);
+    		return;
+  		} 
+                // If no error, send the data
+  		io.emit('time', stdout.replace(/\n/gm, ""))
+		});
+	}, 1000);
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  	res.sendFile(__dirname + '/index.html');
 });
 
 server.listen(9088, () => {
-  console.log('Ready: http://localhost:9088');
+  	console.log('Ready: http://localhost:9088');
 });
 
