@@ -5,13 +5,13 @@ import {Server} from 'socket.io';
 import http from 'http';
 import {exec} from 'child_process';
 import open from 'open';
-import pkgDir from 'pkg-dir';
+import {packageDirectorySync} from 'pkg-dir';
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const __dirname = pkgDir.sync();
+const __dirname = packageDirectorySync();
 console.log(`Current dir: ${__dirname}`);
 
 const hyperdeck_ip = process.argv[2];
