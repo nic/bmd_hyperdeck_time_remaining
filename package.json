@@ -10,6 +10,10 @@
   "scripts": {
     "start": "./index.js"
   },
+  "files": [
+    "index.html",
+    "bmdhd.sh"
+  ],
   "author": "Nic",
   "license": "MIT",
   "dependencies": {
