@@ -33,7 +33,7 @@ io.sockets.on('connection', function(socket)	{
 	io.emit('ip', hyperdeck_ip);
 });
 setInterval(function () {
-	exec(`./bmdhd.sh ${hyperdeck_ip}`, (error, stdout, stderr) => {
+	exec(__dirname + `/bmdhd.sh ${hyperdeck_ip}`, (error, stdout, stderr) => {
 		// Logging of errors
 		const date = new Date();
  		if (error) {
