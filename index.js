@@ -15,12 +15,14 @@ setInterval(function () {
 		const date = new Date();
  		if (error) {
 	 		console.error(`${new Date().toString()} error: ${error.message}`);
-    		return;
+			io.emit('erro', stderr.replace(/\n/gm, ""))
+    		        return;
   		}
 
   		if (stderr) {
-    		console.error('['+date.toLocaleTimeString("en-GB")+'] stderror: ' + stderr);
-    		return;
+    			console.error('['+date.toLocaleTimeString("en-GB")+'] stderror: ' + stderr);
+  			io.emit('erro', stderr.replace(/\n/gm, ""))
+    			return;
   		} 
                 // If no error, send the data
   		io.emit('time', stdout.replace(/\n/gm, ""))
