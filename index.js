@@ -14,17 +14,21 @@ const __dirname = path.resolve(path.dirname(''));
 
 //Change to your Hyperdeck IP address
 const hyperdeck_ip = process.argv[2];
+const port = process.argv[3] || 9088
 
 // Check and warn if IP is not provided
 if (!process.argv[2]) {
-	console.warn(`Missing hyperdeck IP. Please provide the IP address of the Hyperdeck as an argument.\nExample: \n $ npx github:nic/bmd_hyperdeck_time_remaining 192.168.1.42`);
+	console.warn(`Missing hyperdeck IP. Please provide the IP address of the Hyperdeck as an argument.\nExample: \n $ npx github:nic/bmd_hyperdeck_time_remaining 10.0.0.42`);
 	process.exit(1);
+}
+if (!process.argv[3]) {
+	console.info(`Info: Using default port for the web interface (${port}). If you want to use a different port, please provide the port as the last command line argument.`);
 }
 
 console.info(`Connecting into Hyperdeck at: ${hyperdeck_ip}`);
 io.sockets.on('connection', function(socket)	{
 	const date = new Date();
-	console.info(`${new Date().toString()} A new browser has connected`);
+	console.info(`[${date.toLocaleTimeString("en-GB")}] A new browser has connected from ${socket.handshake.address}`);
 	io.emit('ip', hyperdeck_ip);
 });
 setInterval(function () {
@@ -32,7 +36,7 @@ setInterval(function () {
 		// Logging of errors
 		const date = new Date();
  		if (error) {
-	 		console.error(`${new Date().toString()} error: ${error.message}`);
+	 		console.error(`[${date.toLocaleTimeString("en-GB")}] error: ${error.message}`);
 			io.emit('erro', stderr.replace(/\n/gm, ""))
     		        return;
   		}
@@ -51,8 +55,8 @@ app.get('/', (req, res) => {
   	res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(9088, () => {
-  	console.log('Browser page ready: http://localhost:9088');
-	open('http://localhost:9088');
+server.listen(port, () => {
+  	console.log(`Browser page ready: http://localhost:${port}`);
+	open(`http://localhost:${port}`);
 });
 

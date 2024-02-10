@@ -8,7 +8,7 @@
 brew install node
 npm i -g npx
 
-# npx github:nic/bmd_hyperdeck_time_remaining <your-hyerdeck-ip-address>
+# npx github:nic/bmd_hyperdeck_time_remaining <your-hyerdeck-ip-address> [<port-for-web-page>]
 # for example:
 npx github:nic/bmd_hyperdeck_time_remaining 10.0.0.42
 ```
