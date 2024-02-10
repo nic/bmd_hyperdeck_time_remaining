@@ -5,15 +5,13 @@ import {Server} from 'socket.io';
 import http from 'http';
 import {exec} from 'child_process';
 import open from 'open';
-import {packageDirectorySync} from 'pkg-dir';
+import { fileURLToPath } from 'url';
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const __dirname = packageDirectorySync('' );
-console.log(`Current dir: ${__dirname}`);
-console.log(`Current file: ${__filename}`);
+console.log(`import.meta.url: ${import.meta.url}`);
 
 const hyperdeck_ip = process.argv[2];
 const port = process.argv[3] || 9088
