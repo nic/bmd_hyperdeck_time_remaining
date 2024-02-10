@@ -4,24 +4,8 @@
 
 
 # Requirements
-
-## macOS
-```sh
-# Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# Install NodeJS
-brew install node
-```
-
-## Linux/Ubuntu
-```sh
-# Add official NodeJS source
-curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash -
-# Install NodeJS
-sudo apt-get install -y nodejs
-```
-
-
+- macOS or Linux
+- [Node.JS 20+](https://nodejs.org/en/download)
 
 # How to run
 

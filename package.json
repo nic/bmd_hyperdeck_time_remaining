@@ -4,7 +4,7 @@
   "description": "Blackmagic Design Hyperdeck Time Remaining Web",
   "type": "module",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=20"
   },
   "bin":  "./server.js",
   "files": [
