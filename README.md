@@ -6,7 +6,6 @@
 # Requirements
 - macOS or Linux
 - Node.JS
-- NPX
 
 macOS
 ```sh
