@@ -14,8 +14,6 @@ macOS
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # Install NodeJS
 brew install node
-# Instll NPX
-npm i -g npx
 ```
 
 Linux/Ubuntu
@@ -24,8 +22,6 @@ Linux/Ubuntu
 curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash -
 # Install NodeJS
 sudo apt-get install -y nodejs
-# Install NPX
-npm i -g npx
 ```
 
 
@@ -35,5 +31,5 @@ npm i -g npx
 ```sh
 # npx github:nic/bmd_hyperdeck_time_remaining <your-hyerdeck-ip-address> [<port-for-web-page>]
 # for example:
-npx github:nic/bmd_hyperdeck_time_remaining 10.0.0.42
+npx -y github:nic/bmd_hyperdeck_time_remaining 10.0.0.42
 ```
