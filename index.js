@@ -23,7 +23,8 @@ if (!process.argv[2]) {
 
 console.info(`Connecting into Hyperdeck at: ${hyperdeck_ip}`);
 io.sockets.on('connection', function(socket)	{
-	console.log('A new user has connected');
+	const date = new Date();
+	console.info(`${new Date().toString()} A new browser has connected`);
 	io.emit('ip', hyperdeck_ip);
 });
 setInterval(function () {

@@ -4,10 +4,11 @@
 
 # How to run
 
-Set the Hyperdeck IP address here: https://github.com/nic/bmd_hyperdeck_time_remaining/blob/main/index.js#L10
-
-And then:
 ```sh
-yarn install
-yarn start
+brew install node
+npm i -g npx
+
+# npx github:nic/bmd_hyperdeck_time_remaining <your-hyerdeck-ip-address>
+# for example:
+npx github:nic/bmd_hyperdeck_time_remaining 10.0.0.42
 ```
