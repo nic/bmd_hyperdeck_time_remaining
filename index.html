@@ -21,8 +21,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
+  var item = document.getElementById('messages');
   socket.on('time', function(msg) {
-    var item = document.getElementById('messages');
     item.innerText = msg
     const a = msg.split(':');
     const seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
@@ -35,6 +35,11 @@
     } else {
       item.setAttribute('class', 'ok');
     }
+  });
+    
+  socket.on('erro', function(msg) {
+    item.innerText = msg
+    item.setAttribute('class', 'ralert');
   });
 </script>
 </body>
