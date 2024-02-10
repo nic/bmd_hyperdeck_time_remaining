@@ -3,16 +3,16 @@
   "version": "0.0.0",
   "description": "Blackmagic Design Hyperdeck Time Remaining Web",
   "main": "index.js",
+  "bin": {
+    "bmd_hyperdeck_time_remaining": "node index.js"
+  },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "Nic",
   "license": "MIT",
   "dependencies": {
     "express": "4",
     "socket.io": "^4.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.13"
   }
 }
