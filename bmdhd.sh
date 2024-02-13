@@ -14,7 +14,7 @@ expect \"closed\"")
 # Clips lenghts
 clips_length=$(echo "$output" |grep .mov |cut -d' ' -f4)
 # If there is no clip, no connection, or no .mov files on the device
-clips_counter=$(echo "${#clips_lenght[@]}"|tr -cd 0-9)
+clips_counter=$(echo "${#clips_length[@]}"|tr -cd 0-9)
 if [ "${clips_counter}" -lt 1 ]; then
 	printf '%s\n' "No connection, or missing videos" >&2
 else 
